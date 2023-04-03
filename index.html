@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Ejemplo de tabla con eventos de clic en celdas con Bootstrap 5
+    </title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row mt-3  justify-content-center" >
+        <div class="col col-4">
+          <input
+            type="number"
+            class="form-control"
+            id="textfield"
+            placeholder="ingrese valor"
+            required
+          />
+        </div>
+        <div class="col col-4">
+          <input
+            type="number"
+            class="form-control"
+            id="textfield"
+            placeholder="ingrese flete"
+            required
+          />
+        </div>
+
+        <div class="col col-4">
+          <input
+            type="button"
+            class="btn btn-primary"
+            id="buton"
+            value="click aqui"
+          />
+        </div>
+      </div>
+      <div
+        class="p-4 col-sm-12 col-md-12 col-lg-12 col-xlg-12 mx-auto mt-5"
+        id="contenedor"
+      >
+        <table class="table table-hover text-center" id="myTable">
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="checket_parent" /></th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody id="table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="National"
+      tabindex="-1"
+      aria-labelledby="NationalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <form id="filter_national">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="NationalLabel">
+                FILTROS CEDIS NACIONALES
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">ID*</label>
+                  <input
+                    id="ID"
+                    type="text"
+                    name="campaign"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">NOMBRE</label>
+                  <input
+                    id="NOMBRE"
+                    type="text"
+                    name="zone"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">DESCRIPCION*</label>
+                  <input
+                    id="DESCRIPCION"
+                    type="text"
+                    name="date_init"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                <!-- <div class="mb-3 col-md-6">
+                <label class="form-label">TIPO PRODUCTO*</label>
+                <select id="distributor" class="form-control" required>
+                  <option value="" selected disabled hidden>Selecione</option>
+                </select>
+              </div> -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js"
+      integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
