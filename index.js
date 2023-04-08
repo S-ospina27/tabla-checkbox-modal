@@ -6,12 +6,22 @@ const checkparent = document.getElementById("checket_parent");
 const ID = document.getElementById("ID");
 const NOMBRE = document.getElementById("NOMBRE");
 const DESCRIPCION = document.getElementById("DESCRIPCION");
+const siguiente = document.getElementById("btn-siguiente");
+const anterior = document.getElementById("btn-anterior");
 let datos = [];
+let valorAumentar = 0;
+
 const handleGetInfo = () => {
-  axios.get(host + "/api/brands/read").then((res) => {
+  const form = new FormData();
+  form.append("increase", valorAumentar);
+  axios.post(host + "/api/brands/readMarcas", form).then((res) => {
+
     if (!res.data.status) {
       datos.push(...res.data);
       createTable();
+    }else{
+      siguiente.disabled=true;
+      body_table.innerHTML="NO hay mas datos"
     }
   });
 };
@@ -46,7 +56,6 @@ const addColumn = (value) => {
   td.textContent = value;
   return td;
 };
-
 
 //--- Codigo  click checbox-----
 const CreateCheckbox = (key) => {
@@ -84,7 +93,6 @@ checkparent.addEventListener("change", () => {
   });
 });
 
-
 //--- Codigo  click tr modal-----
 const getRowValues = () => {
   table.addEventListener("click", (e) => {
@@ -117,3 +125,63 @@ const SetFields = (key) => {
 };
 
 getRowValues();
+
+
+//--- Agregar datos nuevos-----
+const loadNewDataToTable = ()=>{
+  datos.length = 0;
+  body_table.innerHTML = "";
+  handleGetInfo();
+  
+}
+
+
+
+//--- Paginascion-----
+const aumentar = () => {
+  if (siguiente) {
+    siguiente.addEventListener("click", () => {
+      if (valorAumentar === 1100) {
+        siguiente.disabled = true;
+        return false;
+      }
+      valorAumentar += 10;
+
+      // Habilitar botón
+      if (valorAumentar < 1100) {
+        siguiente.disabled = false;
+      }
+      // Habilitar botón
+      if (valorAumentar > 0) {
+        anterior.disabled = false;
+      }
+      loadNewDataToTable();
+    });
+  }
+};
+
+aumentar();
+
+const disminuir = () => {
+  if (anterior) {
+    anterior.addEventListener("click", () => {
+      // Desactivar botón
+      if (valorAumentar === 0) {
+        anterior.disabled = true;
+        return false;
+      }
+      valorAumentar -= 10;
+      // Habilitar botón
+      if (valorAumentar > 0) {
+        anterior.disabled = false;
+      }
+      // Habilitar botón
+      if (valorAumentar < 1100) {
+        siguiente.disabled = false;
+      }
+      loadNewDataToTable();
+    });
+  }
+};
+
+disminuir();
